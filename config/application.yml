@@ -17,7 +17,7 @@ spring:
       org:
         quartz:
           jobStore:
-            isClustered: false
+            isClustered: true
 
 server:
   port: 8888
@@ -30,3 +30,6 @@ spring:
     url: jdbc:mysql://localhost:3306/grafana?characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai&useServerPrepStmts=true&cachePrepStmts=true&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
+
+server:
+  port: 8887

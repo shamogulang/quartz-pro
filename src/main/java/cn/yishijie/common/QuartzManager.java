@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author chenjianhui on 2019/11/19
@@ -68,9 +70,13 @@ public class QuartzManager {
                 .withSchedule(CronScheduleBuilder.cronSchedule(cronSchedule))
                 .build();
         try{
-            scheduler.scheduleJob(jobDetail,trigger);
+            Set<Trigger> triggers = new HashSet<>();
+            triggers.add(trigger);
+            scheduler.scheduleJob(jobDetail,new HashSet<>(triggers),true);
         }catch (Exception e){
             logger.error(String.format("Quartz addCronJob [%s] exception, detail:", name),e);
         }
     }
+
+
 }
